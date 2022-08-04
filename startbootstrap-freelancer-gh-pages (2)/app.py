@@ -57,9 +57,9 @@ def grass():
     try:
       grass = {"Grass" : "Grass"}
       db.child("Users").child("Users").child("username").update(grass) 
-      return render_template("signup.html")
-    except:
       return render_template("index.html")
+    except:
+      return render_template("signup.html")
 
   else:
     return render_template("index.html")
@@ -156,7 +156,12 @@ def signin():
 
 @app.route('/shop', methods = ["GET" , "POST"])
 def shop():
-  return render_template("shop.html")
+  try:
+    cart = db.child("Users").child("Users").child("username").get().val()
+    print(cart)
+    return render_template("shop.html", cart= cart)
+  except:
+    return render_template("index.html")
 
 
 
