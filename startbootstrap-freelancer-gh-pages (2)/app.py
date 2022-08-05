@@ -158,7 +158,6 @@ def signin():
 def shop():
   try:
     cart = db.child("Users").child("Users").child("username").get().val()
-    print(cart)
     return render_template("shop.html", cart= cart)
   except:
     return render_template("index.html")
